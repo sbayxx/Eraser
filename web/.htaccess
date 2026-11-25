@@ -1,0 +1,29 @@
+# GovernIT Data Eraser - front controller routing (Apache)
+# Dispatches every non-file, non-dir request to index.php.
+# Standard on Gigahost shared hosting (Apache + mod_rewrite).
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Only handle paths under this directory (keep base_path logic in index.php in sync)
+    RewriteBase /
+
+    # Do not rewrite existing files/dirs/assets
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Pass the Authorization header through (shared hosting often strips it from
+    # $_SERVER); without this, Bearer-token auth would always return unauthorized.
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Everything else -> index.php
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# A little hardening
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+</IfModule>

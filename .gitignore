@@ -1,0 +1,12 @@
+# Sensitive - never commit real credentials
+config/db.php
+web/config/db.php
+config/deploy.php
+
+# Logs
+*.log
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/

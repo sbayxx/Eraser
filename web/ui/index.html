@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GovernIT Data Eraser Portal</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<!-- Login screen (shown when not authenticated) -->
+<div id="login-screen" class="login-wrap" style="display:none">
+  <div class="login-card">
+    <h1>GovernIT Data Eraser</h1>
+    <p class="sub">Portal – log ind med dine legitimationsoplysninger</p>
+    <div id="login-error" class="notice notice-bad" style="display:none"></div>
+    <form id="login-form">
+      <div class="field">
+        <label>Brugernavn</label>
+        <input type="text" id="login-user" autocomplete="username" required>
+      </div>
+      <div class="field">
+        <label>Adgangskode</label>
+        <input type="password" id="login-pass" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Log ind</button>
+    </form>
+  </div>
+</div>
+
+<!-- Main app (shown after login) -->
+<div id="app-screen" class="app" style="display:none">
+  <aside class="sidebar">
+    <h1>GovernIT<small>Data Eraser Portal</small></h1>
+    <nav id="nav"></nav>
+    <div class="footer">
+      <div id="nav-user"></div>
+      <a href="#" id="nav-logout" style="margin-top:8px">Log ud</a>
+    </div>
+  </aside>
+  <main class="main" id="main"></main>
+</div>
+
+<script src="./api.js"></script>
+<script src="./screens.js?v=17f4eda18985"></script>
+<script src="./app.js"></script>
+</body>
+</html>
